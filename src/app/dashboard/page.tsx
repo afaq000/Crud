@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Modal from "../components/Modal";
+import { Input } from "postcss";
 
 function page() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -49,6 +50,11 @@ function page() {
   const handleAdd = () => {
     setIsAddEditModalOpen(true);
   };
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    console.log(Input,"inputttt")
+  }
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-r from-gray-200 bg-gray-900">
@@ -156,7 +162,7 @@ function page() {
 
       <Modal isOpen={isAddModalOpen} onClose={closeAddModal}>
         <h2 className="text-2xl font-semibold text-gray-800">Add New Record</h2>
-        <div className="mt-6">
+        <form className="mt-6" onSubmit={handleSubmit}>
           <input
             type="text"
             className="border border-gray-300 p-3 rounded-lg w-full mb-4"
@@ -185,7 +191,7 @@ function page() {
               Cancel
             </button>
           </div>
-        </div>
+        </form>
       </Modal>
     </div>
   );
